@@ -4,3 +4,7 @@ export const truncateText = (text: string, maxLength: number) => {
     }
     return text;
 };
+
+export const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('de-DE').format(price);
+};
