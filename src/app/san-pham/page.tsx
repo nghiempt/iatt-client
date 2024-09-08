@@ -1,9 +1,7 @@
-'use client'
+"use client";
 
-import { SamplePage } from "@/modules/sample";
+import ProductPage from "@/modules/san-pham";
 
 export default function Product() {
-  return (
-    <SamplePage />
-  );
+  return <ProductPage />;
 }

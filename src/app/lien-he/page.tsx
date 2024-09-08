@@ -1,9 +1,9 @@
 'use client'
 
-import { SamplePage } from "@/modules/sample";
+import { ContactPage } from "@/modules/lien-he";
 
 export default function Contact() {
   return (
-    <SamplePage />
+    <ContactPage />
   );
 }
