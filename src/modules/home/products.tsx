@@ -2,12 +2,10 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { formatPrice, truncateText } from "@/utils/helper";
-import { Separator } from '@radix-ui/react-separator';
+import { formatPrice } from "@/utils/helper";
 import { IMAGES } from '@/utils/image';
 import { ArrowRightLeft, Heart, Share2 } from 'lucide-react';
 

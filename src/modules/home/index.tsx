@@ -6,6 +6,7 @@ import { Header } from "@/layout/header"
 import { IMAGES } from "@/utils/image"
 import Image from "next/image"
 import { Products } from "./products"
+import { Slider } from "./slider"
 
 interface Product {
     id: number
@@ -136,7 +137,7 @@ export function HomePage() {
                         </div>
                     </div>
                 </div>
-                <div className="w-full flex flex-col justify-start items-center">
+                <div className="w-full flex flex-col justify-start items-center mb-10">
                     <div className="text-2xl font-extrabold text-center mb-5">Our Products</div>
                     <div className="w-full mb-5">
                         <Products products={products} />
@@ -144,6 +145,9 @@ export function HomePage() {
                     <Button className="w-full md:w-1/5 lg:w-1/5 rounded-sm bg-white border border-[#B88E2F] text-[#B88E2F] font-bold hover:bg-[#B88E2F] hover:text-white truncate">
                         Show More
                     </Button>
+                </div>
+                <div className="w-full py-10 bg-[#FCF8F3]">
+                    <Slider />
                 </div>
             </div>
             <Footer />
