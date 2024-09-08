@@ -54,6 +54,9 @@ export const Products: React.FC<ProductProps> = ({ products }) => {
                             </div>
                         </div>
                     </Card>
+                    <div className={`absolute top-2 right-2 h-12 w-12 rounded-full ${product.status == "New" ? "bg-[#2EC1AC]" : "bg-[#E97171]"} bg-[#E97171] text-white text-md font-semibold flex items-center justify-center`}>
+                        {product.status == "New" ? "New" : product.discount > 1 ? "-" + product.discount + "%" : ""}
+                    </div>
                     <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
                     <div className='absolute inset-0 w-full flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                         <Button className='w-2/3 mb-5 items-center font-bold rounded-sm bg-white opacity-100 text-[#B88E2F] hover:bg-[#B88E2F] hover:text-white truncate'>

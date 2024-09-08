@@ -20,6 +20,12 @@ const nextConfig = {
                 port: '',
                 pathname: '/_next/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'abfurnishings.in',
+                port: '',
+                pathname: '/wp-content/**',
+            },
         ],
     },
 };

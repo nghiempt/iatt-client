@@ -3,11 +3,12 @@ import { ArrowLeft, ArrowRight, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { IMAGES } from '@/utils/image';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export function Slider() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
-
+    const [paginationIndex, setPaginationIndex] = useState(0)
     const [slidesData, setSlidesData] = useState([
         { id: "01", image: IMAGES.HOME_BDR_1, title: 'Inner Peace', roomType: 'Bed Room' },
         { id: "02", image: IMAGES.HOME_BDR_2, title: 'Elegant Living', roomType: 'Living Room' },
@@ -27,6 +28,8 @@ export function Slider() {
             setSlidesData(updatedSlides);
             setCurrentIndex(0);
 
+            setPaginationIndex((prevIndex) => (prevIndex + 1) % totalSlides);
+
             containerRef.current.scrollTo({
                 left: 0,
                 behavior: 'smooth',
@@ -44,6 +47,8 @@ export function Slider() {
             setSlidesData(updatedSlides);
             setCurrentIndex(0);
 
+            setPaginationIndex((prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides);
+
             containerRef.current.scrollTo({
                 left: 0,
                 behavior: 'smooth',
@@ -55,35 +60,6 @@ export function Slider() {
     useEffect(() => {
         const container = containerRef.current;
         if (!container) return;
-
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        const handleTouchStart = (event: TouchEvent) => {
-            touchStartX = event.touches[0].clientX;
-        };
-
-        const handleTouchMove = (event: TouchEvent) => {
-            touchEndX = event.touches[0].clientX;
-        };
-
-        const handleTouchEnd = () => {
-            if (touchStartX - touchEndX > 50) {
-                handleNext();
-            } else if (touchStartX - touchEndX < -50) {
-                handlePrev();
-            }
-        };
-
-        container.addEventListener('touchstart', handleTouchStart);
-        container.addEventListener('touchmove', handleTouchMove);
-        container.addEventListener('touchend', handleTouchEnd);
-
-        return () => {
-            container.removeEventListener('touchstart', handleTouchStart);
-            container.removeEventListener('touchmove', handleTouchMove);
-            container.removeEventListener('touchend', handleTouchEnd);
-        };
     }, [currentIndex]);
 
     return (
@@ -91,9 +67,11 @@ export function Slider() {
             <div className="col-span-2 p-10 flex flex-col justify-center">
                 <div className="text-black text-3xl font-bold mb-2 text-clip overflow-hidden text-center md:text-start lg:text-start">50+ Beautiful rooms inspiration</div>
                 <div className="text-sm font-medium text-gray-600 mb-5 text-clip overflow-hidden text-center md:text-start lg:text-start">Our designer already made a lot of beautiful prototipe of rooms that inspire you</div>
-                <Button className="bg-[#B88E2F] rounded-sm lg:w-1/2 hover:opacity-80 hover:bg-[#B88E2F] text-ellipsis overflow-hidden whitespace-nowrap">
-                    Explore More
-                </Button>
+                <Link className="w-full flex justify-center items-center md:justify-start lg:justify-start" href="/san-pham">
+                    <Button className="bg-[#B88E2F] rounded-sm lg:w-1/2 hover:opacity-80 hover:bg-[#B88E2F] text-ellipsis overflow-hidden whitespace-nowrap">
+                        Explore More
+                    </Button>
+                </Link>
             </div>
             <div className="col-span-3 w-full relative flex flex-col items-center justify-center h-[550px]">
                 <div className="relative w-full h-full overflow-hidden">
@@ -122,7 +100,7 @@ export function Slider() {
                                     <div className="absolute inset-0 flex items-end justify-start px-7 py-5 rounded-b-lg z-10">
                                         <div className='bg-white bg-opacity-80 p-5'>
                                             <div className='text-xs font-semibold text-gray-400 mb-1'>{slide.id} --- {slide.roomType}</div>
-                                            <div className="text-lg font-bold text-black opacity-100">{slide.title}</div>
+                                            <div className={`font-bold text-black opacity-100 ${currentIndex === index ? 'text-lg' : 'text-sm'}`}>{slide.title}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -142,13 +120,19 @@ export function Slider() {
                 </div>
 
                 {/* Pagination */}
-                <div className="pagination my-4 flex gap-2">
+                <div className="absolute md:left-1/2 lg:left-1/2 bottom-5 flex gap-2 items-center">
                     {slidesData.map((_, index) => (
                         <span
                             key={index}
-                            className={`h-3 w-3 rounded-full bg-black transition-all duration-300 ${currentIndex === index ? 'w-8' : 'w-3'}`}
-                        ></span>
-
+                            className={`relative h-3 w-3 flex items-center justify-center 
+                        ${paginationIndex === index ? 'h-8 w-8 rounded-full border-2 border-[#B88E2F]' : ''}`}
+                        >
+                            {/* Inner circle */}
+                            <span
+                                className={`h-3 w-3 rounded-full transition-all duration-300 
+                            ${paginationIndex === index ? 'bg-[#B88E2F]' : 'bg-gray-300'}`}
+                            />
+                        </span>
                     ))}
                 </div>
             </div>
