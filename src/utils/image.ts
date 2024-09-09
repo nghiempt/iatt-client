@@ -5,4 +5,5 @@ export const IMAGES = {
     HOME_BDR_2: "https://www.furniro.shop/_next/image?url=%2FLiving.png&w=384&q=75",
     HOME_BDR_3: "https://www.furniro.shop/_next/image?url=%2FBedroom.png&w=384&q=75",
     HOME_GRID_IMG: "https://abfurnishings.in/wp-content/uploads/2022/07/Untitled-design-2022-07-31T220611.782-min-2048x1025.png",
+    BLOG_IMAGE_1: "https://planguages.com/uploads/noidung/images/baiviet/lam-the-nao-de-tang-kha-nang-tu-tin-trong-giao-tiep-tieng-anh.jpg",
 }
