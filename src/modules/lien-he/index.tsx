@@ -4,15 +4,52 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Footer } from "@/layout/footer";
 import { Header } from "@/layout/header";
+import Image from "next/image";
 
 export function ContactPage() {
   return (
     <div className="w-full min-h-screen flex flex-col justify-start items-center gap-10">
       <Header />
-      <div className="w-5/6 md:w-2/3 lg:w-1/2 bg-gray-100 rounded-lg py-20 flex justify-center items-center"></div>
+      <div
+        className="w-full h-64 md:h-96 lg:h-128 bg-cover bg-center flex flex-col justify-center items-center"
+        style={{
+          backgroundImage: `url('/breadcrumb.png')`,
+        }}
+      >
+        <Image
+          src="/Meubel_House_Logos.png"
+          alt="Logo"
+          className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mb-4"
+          width={96}
+          height={96}
+        />
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center">
+          Contact
+        </h1>
+        <div className="text-center mt-4 flex items-center">
+          <span className="text-black font-semibold">Home</span>
+          <svg
+            className="h-5 w-5 text-black mx-2"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 5l7 7-7 7"
+            ></path>
+          </svg>
+          <span className="text-black">Contact</span>
+        </div>
+      </div>
+
       <div className="w-full bg-white py-8 flex justify-center">
         <div className="w-full max-w-3xl text-center px-4">
-          <h1 className="text-2xl md:text-3xl font-bold">Get In Touch With Us</h1>
+          <h1 className="text-2xl md:text-3xl font-bold">
+            Get In Touch With Us
+          </h1>
           <p className="mt-2 text-gray-500 text-sm md:text-base">
             For More Information About Our Product & Services. Please Feel Free
             To Drop Us An Email. Our Staff Always Be There To Help You Out. Do
@@ -98,7 +135,10 @@ export function ContactPage() {
         <div className="flex-1 bg-white p-8">
           <form className="space-y-6">
             <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="name"
+                className="text-sm font-medium text-gray-700"
+              >
                 Your Name
               </label>
               <Input
@@ -109,7 +149,10 @@ export function ContactPage() {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="text-sm font-medium text-gray-700"
+              >
                 Email Address
               </label>
               <Input
@@ -120,7 +163,10 @@ export function ContactPage() {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="subject" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="subject"
+                className="text-sm font-medium text-gray-700"
+              >
                 Subject
               </label>
               <Input
@@ -131,7 +177,10 @@ export function ContactPage() {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="message"
+                className="text-sm font-medium text-gray-700"
+              >
                 Message
               </label>
               <Textarea
