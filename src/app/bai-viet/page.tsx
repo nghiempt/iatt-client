@@ -1,9 +1,9 @@
 'use client'
 
-import { SamplePage } from "@/modules/sample";
+import { BlogPage } from "@/modules/blog";
 
 export default function Blog() {
   return (
-    <SamplePage />
+    <BlogPage />
   );
 }
