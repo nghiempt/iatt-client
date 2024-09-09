@@ -4,6 +4,8 @@ import { Footer } from "@/layout/footer";
 import { Header } from "@/layout/header";
 import { Product } from "../../../types/Product";
 import ProductCard from "@/components/ui/ProductCard";
+import Image from "next/image";
+
 export default function ProductPage() {
   const products: Product[] = [
     {
@@ -90,8 +92,39 @@ export default function ProductPage() {
   return (
     <div className="w-full min-h-screen flex flex-col items-center bg-gray-50">
       <Header />
-      <div className="w-full md:w-5/6 lg:w-2/3 bg-gray-100 rounded-lg py-20 flex justify-center items-center">
-        Trang Mẫu
+      <div
+        className="w-full h-64 md:h-96 lg:h-128 bg-cover bg-center flex flex-col justify-center items-center"
+        style={{
+          backgroundImage: `url('/breadcrumb.png')`,
+        }}
+      >
+        <Image
+          src="/Meubel_House_Logos.png"
+          alt="Logo"
+          className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mb-4"
+          width={96}
+          height={96}
+        />
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-center">
+          Product
+        </h1>
+        <div className="text-center mt-4 flex items-center">
+          <span className="text-black font-semibold">Home</span>
+          <svg
+            className="h-5 w-5 text-black mx-2"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 5l7 7-7 7"
+            ></path>
+          </svg>
+          <span className="text-black">Product</span>
+        </div>
       </div>
       <div className="w-full bg-[#F9F1E7] rounded-b-lg flex flex-col md:flex-row justify-between items-center py-4 px-4 md:px-6 text-gray-800">
         <div className="flex items-center space-x-4 mx-4 md:mx-14">
