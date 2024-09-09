@@ -29,14 +29,15 @@ export const Blogs: React.FC<BlogProps> = ({ blogs }) => {
     return (
         <div className="w-full rounded-lg flex flex-col gap-10">
             {blogs.map((blog) => (
-                <div className='relative group'>
+                <div key={blog.id} className='relative group'>
                     <Card className="rounded-sm flex flex-col h-[400px] lg:h-[550px] md:h-[550px] border-none">
                         <div className='relative w-full h-[200px] lg:h-[350px] md:h-[350px] mb-4'>
                             <Image
                                 src={IMAGES.BLOG_IMAGE_1}
                                 alt={blog.title + ' image'}
-                                layout="fill"
-                                objectFit="cover"
+                                fill
+                                style={{ objectFit: 'cover' }}
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 className='rounded-lg'
                             />
                         </div>

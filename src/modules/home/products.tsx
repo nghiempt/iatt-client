@@ -28,14 +28,15 @@ export const Products: React.FC<ProductProps> = ({ products }) => {
     return (
         <div className="w-full rounded-lg grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {products.map((product) => (
-                <div className='relative group'>
+                <div key={product.id} className='relative group'>
                     <Card className="rounded-sm bg-gray-100 flex flex-col h-[380px] border-none">
                         <div className='relative w-full h-[280px]'>
                             <Image
                                 src={IMAGES.HOME_BDR_1}
                                 alt={product.name + ' image'}
-                                layout="fill"
-                                objectFit="cover"
+                                fill
+                                style={{ objectFit: 'cover' }}
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             />
                         </div>
                         <div className='flex flex-col justify-center p-3 text-start'>

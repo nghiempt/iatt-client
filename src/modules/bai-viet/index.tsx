@@ -8,6 +8,9 @@ import Link from "next/link"
 import { Blogs } from "./blogs"
 import { Input } from "@/components/ui/input"
 import { IMAGES } from "@/utils/image"
+import { Button } from "@/components/ui/button"
+import { AboutPart } from "./about"
+import { useState } from "react"
 
 interface Blog {
     id: number
@@ -138,6 +141,25 @@ const categories: Category[] = [
 ];
 
 export function BlogPage() {
+    const [currentPage, setCurrentPage] = useState(1);
+    const blogsPerPage = 3;
+
+    // Calculate the number of total pages
+    const totalPages = Math.ceil(blogs.length / blogsPerPage);
+
+    // Determine the blogs to show based on the current page
+    const indexOfLastBlog = currentPage * blogsPerPage;
+    const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+    const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
+
+    // Handle pagination button click
+    const handlePageChange = (pageNumber: any) => {
+        setCurrentPage(pageNumber);
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth', // Smooth scrolling effect
+        });
+    };
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center gap-10">
             <Header />
@@ -166,16 +188,72 @@ export function BlogPage() {
                     </div>
                 </div>
 
+                {/* Search bar for mobile */}
+                <div className="w-full lg:hidden mt-5 px-10">
+                    <form>
+                        <div className="relative">
+                            <Input
+                                type="text"
+                                id="name"
+                                className="w-full border border-gray-400 p-2 rounded-lg"
+                            />
+                            <Search size={20} className="absolute right-3 top-1/2 transform -translate-y-1/2" />
+                        </div>
+                    </form>
+                </div>
+
+                {/* Category for mobile */}
+                <div className="lg:hidden px-6 pt-6 flex flex-col justify-center">
+                    <div className="text-lg font-semibold mb-5 text-center">
+                        Categories
+                    </div>
+                    <div className="flex flex-col items-center gap-8 w-full grid grid-cols-2 md:grid-cols-4">
+                        {categories.map((category) => (
+                            <div key={category.id} className="w-full flex relative hover:cursor-pointer">
+                                <div className="text-left text-xs font-semibold text-gray-400">
+                                    {category.name} ({category.count})
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
                 {/* Blogs */}
-                <div className="w-full p-10 grid grid-cols-3 gap-10">
-                    {/* Blog List */}
-                    <div className="col-span-2">
-                        <Blogs blogs={blogs.slice(0, 3)} />
+                <div className="w-full p-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
+                    <div className="lg:col-span-2">
+                        <Blogs blogs={currentBlogs} />
+
+                        <div className="w-full mt-7 flex justify-center">
+                            <div className="flex justify-center space-x-4">
+                                {Array.from({ length: totalPages }, (_, index) => (
+                                    <Button
+                                        key={index}
+                                        onClick={() => handlePageChange(index + 1)}
+                                        className={
+                                            currentPage === index + 1
+                                                ? "bg-[#B88E2F] hover:bg-[#B88E2F]"
+                                                : "bg-[#F9F1E7] hover:bg-[#F9F1E7] text-black"
+                                        }
+                                    >
+                                        {index + 1}
+                                    </Button>
+                                ))}
+
+                                <Button
+                                    onClick={() => handlePageChange(currentPage + 1)}
+                                    disabled={currentPage === totalPages}
+                                    className="bg-[#F9F1E7] hover:bg-[#F9F1E7] text-black"
+                                >
+                                    Next
+                                </Button>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Side bar */}
                     <div className="col-span-1">
-                        <div>
+                        {/* Search bar */}
+                        <div className="hidden lg:block">
                             <form>
                                 <div className="relative">
                                     <Input
@@ -189,7 +267,7 @@ export function BlogPage() {
                         </div>
 
                         {/* Category */}
-                        <div className="p-6">
+                        <div className="hidden lg:block p-6">
                             <div className="text-lg font-semibold mb-5">
                                 Categories
                             </div>
@@ -208,27 +286,28 @@ export function BlogPage() {
                         </div>
 
                         {/* Recent Posts */}
-                        <div className="p-6">
-                            <div className="text-lg font-semibold mb-5">
+                        <div className="lg:p-6">
+                            <div className="text-lg font-semibold mb-5 text-center lg:text-start">
                                 Recent Posts
                             </div>
                             <div className="w-full flex flex-col gap-8">
                                 {blogs.slice(0, 5).map((blog) => (
-                                    <div key={blog.id} className="w-full grid grid-cols-3 items-center transform transition-transform hover:scale-110 hover:cursor-pointer">
-                                        <div className="relative col-span-1 p-8 w-full flex items-center">
+                                    <div key={blog.id} className="w-full grid grid-cols-3 gap-5 items-center transform transition-transform hover:scale-110 hover:cursor-pointer">
+                                        <div className="relative col-span-1 lg:p-8 p-10 w-full flex items-center">
                                             <Image
                                                 src={IMAGES.BLOG_IMAGE_1}
                                                 alt={blog.title + ' image'}
-                                                layout="fill"
-                                                objectFit="cover"
+                                                fill
+                                                style={{ objectFit: 'cover' }}
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                 className='rounded-md w-full'
                                             />
                                         </div>
-                                        <div className="col-span-2 pl-3">
-                                            <div className="text-xs font-medium max-h-[34px] text-clip overflow-hidden mb-1">
+                                        <div className="col-span-2">
+                                            <div className="lg:text-xs text-md font-medium lg:max-h-[34px] max-h-[24px] text-clip overflow-hidden mb-1">
                                                 {blog.title}
                                             </div>
-                                            <div className="text-[11px] font-medium text-gray-400 truncate">
+                                            <div className="lg:text-[11px] text-sm font-medium text-gray-400 truncate">
                                                 {blog.date.toDateString()}
                                             </div>
                                         </div>
@@ -238,6 +317,9 @@ export function BlogPage() {
                         </div>
                     </div>
                 </div>
+
+                {/* About us */}
+                <AboutPart />
                 <Footer />
             </div>
         </div>

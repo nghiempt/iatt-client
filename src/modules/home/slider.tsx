@@ -93,8 +93,9 @@ export function Slider() {
                                     <Image
                                         src={slide.image}
                                         alt={slide.roomType + ' image'}
-                                        layout="fill"
-                                        objectFit="cover"
+                                        fill
+                                        style={{ objectFit: 'cover' }}
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         className='rounded-sm'
                                     />
                                     <div className="absolute inset-0 flex items-end justify-start px-7 py-5 rounded-b-lg z-10">
