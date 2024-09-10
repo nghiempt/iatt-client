@@ -1,4 +1,5 @@
 "use client";
+
 import { Footer } from "@/layout/footer";
 import { Header } from "@/layout/header";
 import Image from "next/image";
@@ -12,11 +13,10 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@radix-ui/react-tabs";
 
 const ProductDetailPage: React.FC = () => {
   const [quantity, setQuantity] = useState<number>(1);
-  const [activeTab, setActiveTab] = useState<string>("description");
   const [activeSize, setActiveSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
-
   const sizes = ["L", "XL", "XS"];
+
   const handleQuantityChange = (amount: number) => {
     if (quantity + amount > 0) {
       setQuantity(quantity + amount);
@@ -86,8 +86,6 @@ const ProductDetailPage: React.FC = () => {
   return (
     <div className="w-full min-h-screen flex flex-col items-center bg-white">
       <Header />
-
-      {/* Breadcrumb */}
       <div className="w-full bg-[#F9F1E7] rounded-b-lg py-4 px-4 md:px-6 text-gray-800">
         <div className="flex flex-wrap items-center justify-center md:justify-start space-x-2 md:space-x-4 mx-4 md:mx-14">
           <p className="text-gray-500">Home</p>
@@ -122,12 +120,8 @@ const ProductDetailPage: React.FC = () => {
           <p className="font-semibold">Asgaard sofa</p>
         </div>
       </div>
-
-      {/* Product Section */}
       <div className="flex flex-col md:flex-row w-full max-w-6xl p-4 mt-5 space-y-6 md:space-y-0">
-        {/* Thumbnails and Main Image Container */}
         <div className="flex md:flex-row flex-col-reverse items-start md:space-x-4">
-          {/* Thumbnails */}
           <div className="flex md:flex-col flex-row md:space-y-4 mt-2 space-x-2 md:space-x-0 overflow-x-auto">
             {thumbnails.map((src, index) => (
               <Image
@@ -141,8 +135,6 @@ const ProductDetailPage: React.FC = () => {
               />
             ))}
           </div>
-
-          {/* Main Image */}
           <div className="w-full flex justify-center mt-2">
             <Image
               src={mainImage}
@@ -153,8 +145,6 @@ const ProductDetailPage: React.FC = () => {
             />
           </div>
         </div>
-
-        {/* Product Details */}
         <div className="flex flex-col flex-1 space-y-6 md:ml-20">
           <h1 className="text-2xl md:text-4xl font-bold text-center md:text-left">
             Asgaard sofa
@@ -175,8 +165,6 @@ const ProductDetailPage: React.FC = () => {
             Kilburn is a compact, stout-hearted hero with a well-balanced audio
             which boasts a clear midrange and extended highs for a sound.
           </p>
-
-          {/* Size Options */}
           <div>
             <h3 className="text-lg font-semibold text-center md:text-left">
               Size
@@ -187,11 +175,10 @@ const ProductDetailPage: React.FC = () => {
                   key={size}
                   variant="outline"
                   size="sm"
-                  className={`px-4 ${
-                    activeSize === size
+                  className={`px-4 ${activeSize === size
                       ? "bg-[#B88E2F] text-white"
                       : "bg-white text-black"
-                  }`}
+                    }`}
                   onClick={() => setActiveSize(size)}
                 >
                   {size}
@@ -199,8 +186,6 @@ const ProductDetailPage: React.FC = () => {
               ))}
             </div>
           </div>
-
-          {/* Color Options */}
           <div>
             <h3 className="text-lg font-semibold text-center md:text-left">
               Color
@@ -213,17 +198,14 @@ const ProductDetailPage: React.FC = () => {
                   variant="outline"
                   size="sm"
                   onClick={() => setSelectedColor(colorObj.color)}
-                  className={`w-8 h-8 ${colorObj.bg} rounded-full ${
-                    selectedColor === colorObj.color
+                  className={`w-8 h-8 ${colorObj.bg} rounded-full ${selectedColor === colorObj.color
                       ? "border-2 border-[#B88E2F]"
                       : "border border-transparent"
-                  } hover:${colorObj.bg} focus:${colorObj.bg}`}
+                    } hover:${colorObj.bg} focus:${colorObj.bg}`}
                 />
               ))}
             </div>
           </div>
-
-          {/* Quantity and Action Buttons */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-start space-y-4 md:space-y-0 md:space-x-4 mt-4">
             <div className="flex items-center justify-center md:justify-start border border-gray-300 rounded-full px-3 py-1">
               <Button
@@ -259,9 +241,7 @@ const ProductDetailPage: React.FC = () => {
               </Button>
             </div>
           </div>
-
           <hr />
-          {/* Additional Details */}
           <div className="text-sm text-gray-600 mt-4 space-y-2">
             <div className="flex items-center">
               <p className="w-24 font-semibold">SKU</p>
@@ -292,11 +272,7 @@ const ProductDetailPage: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Separator */}
       <div className="w-full h-[1px] bg-gray-300 my-10"></div>
-
-      {/* Tabs Section */}
       <div className="w-full max-w-6xl mt-10 p-4 md:p-8 mx-auto">
         <Tabs defaultValue="description">
           <TabsList className="flex justify-center pb-2 space-x-4 md:space-x-8 overflow-x-auto">
@@ -319,8 +295,6 @@ const ProductDetailPage: React.FC = () => {
               Reviews [5]
             </TabsTrigger>
           </TabsList>
-
-          {/* Description Content */}
           <TabsContent value="description" className="mt-8 text-gray-600">
             <p className="mb-4">
               Embodying the raw, wayward spirit of rock ’n’ roll, the Kilburn
@@ -338,7 +312,6 @@ const ProductDetailPage: React.FC = () => {
               personal preferences while the guitar-influenced leather strap
               enables easy and stylish travel.
             </p>
-            {/* Images Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
               <div className="flex justify-center">
                 <Image
@@ -360,16 +333,11 @@ const ProductDetailPage: React.FC = () => {
               </div>
             </div>
           </TabsContent>
-
-          {/* Additional Information Content */}
           <TabsContent value="additional" className="mt-8 text-gray-600">
             <p>Additional Information content goes here...</p>
           </TabsContent>
-
-          {/* Reviews Content */}
           <TabsContent value="reviews" className="mt-8 text-gray-600">
             <div className="space-y-4">
-              {/* Single Review Item */}
               <div className="border-b pb-4">
                 <div className="flex items-center justify-between">
                   <h4 className="font-semibold">John Doe</h4>
@@ -393,8 +361,6 @@ const ProductDetailPage: React.FC = () => {
                   recommend!
                 </p>
               </div>
-
-              {/* Another Review Item */}
               <div className="border-b pb-4">
                 <div className="flex items-center justify-between">
                   <h4 className="font-semibold">Jane Smith</h4>
@@ -417,8 +383,6 @@ const ProductDetailPage: React.FC = () => {
                   }
                 </p>
               </div>
-
-              {/* Add Review Form */}
               <div className="mt-6">
                 <h4 className="font-semibold mb-2">Add a Review</h4>
                 <form>
@@ -475,11 +439,7 @@ const ProductDetailPage: React.FC = () => {
           </TabsContent>
         </Tabs>
       </div>
-
-      {/* Separator */}
       <div className="w-full h-[1px] bg-gray-300 my-10"></div>
-
-      {/* Related Products Section */}
       <div className="w-full max-w-6xl mt-10 p-4 md:p-8">
         <h2 className="text-2xl font-bold mb-6 text-center">
           Related Products
@@ -498,7 +458,6 @@ const ProductDetailPage: React.FC = () => {
           </Button>
         </div>
       </div>
-
       <Footer />
     </div>
   );

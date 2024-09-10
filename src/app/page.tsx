@@ -1,6 +1,6 @@
 'use client'
 
-import { HomePage } from "@/modules/home";
+import { HomePage } from "@/modules/trang-chu";
 
 export default function Home() {
   return (

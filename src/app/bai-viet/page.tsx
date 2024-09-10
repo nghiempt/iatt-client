@@ -1,9 +1,9 @@
 'use client'
 
-import { SamplePage } from "@/modules/sample";
+import { BlogPage } from "@/modules/bai-viet";
 
 export default function Blog() {
   return (
-    <SamplePage />
+    <BlogPage />
   );
 }

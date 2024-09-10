@@ -20,9 +20,7 @@ export function ContactPage() {
           </p>
         </div>
       </div>
-
       <div className="w-full max-w-7xl flex flex-col lg:flex-row justify-between px-4 md:px-20 py-10">
-        {/* Left Section */}
         <div className="flex-1 space-y-8">
           <div className="flex items-start space-x-4">
             <svg
@@ -47,7 +45,6 @@ export function ContactPage() {
               </p>
             </div>
           </div>
-
           <div className="flex items-start space-x-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +66,6 @@ export function ContactPage() {
               <p className="text-gray-600">Hotline: +(+84) 456-6789</p>
             </div>
           </div>
-
           <div className="flex items-start space-x-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -93,8 +89,6 @@ export function ContactPage() {
             </div>
           </div>
         </div>
-
-        {/* Right Section */}
         <div className="flex-1 bg-white p-8">
           <form className="space-y-6">
             <div className="space-y-2">
